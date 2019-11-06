@@ -168,3 +168,73 @@ function moreOrFive(array) {
 }
 
 // console.log(moreOrFive(numArray))
+
+// function getMax(array, currentMax = 0) {
+//   // console.log('What am I?', array);
+//   if (array.length <= 1) {
+//     return 'Invalid array';
+//   }
+//   if (array.length === 2) {
+//     currentMax = array[0] + array[1];
+//     return currentMax;
+//   }
+
+//   //get sum of first array
+//   else {
+//     let arraySum = array.reduce((a,b) => a + b);
+//     if (arraySum > currentMax){
+//       currentMax = arraySum;
+//       console.log(currentMax);
+//     }
+  
+//     // console.log(array.slice(1));
+//     // console.log(array.slice(0, array.length - 1));
+    
+//     getMax(array.slice(1), currentMax);
+//     getMax(array.slice(0, array.length - 1), currentMax);
+//     getMax(array.slice(1, array.length - 1), currentMax);
+//   }
+// }
+
+// console.log(getMax([4, 6, -3, 5, -2, 1]));
+
+function simpleGetMax(array) {
+  let currentMax = 0;
+  let finalMax = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    currentMax = Math.max(0, currentMax + array[i]);
+    finalMax = Math.max(currentMax, finalMax);
+  }
+
+  return finalMax;
+}
+
+// console.log(simpleGetMax([4, 6, -3, 5, -2, 1]));
+
+function mergeArrays(array1, array2){
+  let sortedMerge = [];
+  let idx1 = 0;
+  let idx2 = 0;
+
+  while(sortedMerge.length < array1.length + array2.length){
+    if(array1[idx1] <= array2[idx2]){
+      sortedMerge.push(array1[idx1]);
+      idx1++;
+    }
+    else if(array2[idx2] <= array1[idx1]){
+      sortedMerge.push(array2[idx2]);
+      idx2++;
+    }
+    else if(array1[idx1] > sortedMerge[sortedMerge.length - 1]){
+      sortedMerge.push(array1[idx1]);
+    }
+    else if(array2[idx2] > sortedMerge[sortedMerge.length - 1]){
+      sortedMerge.push(array1[idx1]);
+    }
+  }
+
+  return sortedMerge;
+}
+
+console.log(mergeArrays([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]));
