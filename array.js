@@ -65,11 +65,11 @@ class Array {
       this._resize((this.length + 1) * Array.SIZE_RATIO);
     }
     testMemory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
-    memory.set(this.ptr + index, value);
+    testMemory.set(this.ptr + index, value);
     this.length++;
   }
 
-  remove(index, value) {
+  remove(index) {
     if(index < 0 || index > this.length){
       throw new Error('Index error');
     }
@@ -78,8 +78,42 @@ class Array {
   }
 }
 
-module.exports = Array
-Array.SIZE_RATIO = 3
+module.exports = Array;
 
-const testArray = new Array
-console.log(testArray)
+function main() {
+  Array.SIZE_RATIO = 3;
+
+  let newArray = new Array;
+  
+  newArray.push(3);
+  // Array { length: 1, _capacity: 3, ptr: 0 }
+
+  newArray.push(5);
+  newArray.push(15);
+  newArray.push(19);
+  newArray.push(45);
+  newArray.push(10);
+
+  //#2 Array { length: 6, _capacity: 12, ptr: 3 }
+  //After the third push the length exceeds capacity then allocates the length * size ratio + length and moves pointer to 3
+
+  newArray.pop();
+  newArray.pop();
+  newArray.pop();
+
+  //Removes the last item of the array decreasing the length three times, O(1) operation
+
+  //#4
+  // console.log(testMemory.get(3));
+
+  newArray.pop();
+  newArray.pop();
+  newArray.pop();
+
+  newArray.push('tauhida');
+  console.log(testMemory.get(3));
+  //Inputting a string returns NaN because the Array class is defined as type 64-bit float values
+  //The resize is to accomodate adding values to an array where length exceeds capacity by reallocating the array
+}
+
+main();
