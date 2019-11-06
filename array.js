@@ -111,9 +111,60 @@ function main() {
   newArray.pop();
 
   newArray.push('tauhida');
-  console.log(testMemory.get(3));
+  // console.log(testMemory.get(3));
   //Inputting a string returns NaN because the Array class is defined as type 64-bit float values
   //The resize is to accomodate adding values to an array where length exceeds capacity by reallocating the array
 }
 
 main();
+
+
+// #5 URLify a string
+
+// A common mistake users make when they type in an URL is to put spaces between words or letters. 
+// A solution that developers can use to solve this problem is to replace any spaces with a %20. 
+// Write a method that takes in a string and replaces all its empty spaces with a %20. 
+// Your algorithm can only make 1 pass through the string. 
+// Examples of input and output for this problem can be
+
+// Input: tauhida parveen
+// Output: tauhida%20parveen
+// Input: www.thinkful.com /tauh ida parv een
+// Output: www.thinkful.com%20/tauh%20ida%20parv%20een
+
+function URLify(string) {
+  let URL = ''
+  for(let i = 0; i < string.length; i++) {
+    if(string[i] === ' ') {
+      URL += '%20'
+    } else {
+      URL += string[i]
+    }
+  }
+  return URL
+}
+
+// console.log(URLify('tauhida parveen'))
+// Output: tauhida%20parveen
+  
+// console.log(URLify('www.thinkful.com /tauh ida parv een'))
+// Output: www.thinkful.com%20/tauh%20ida%20parv%20een
+
+// #6 Filtering an array
+// Imagine you have an array of numbers. 
+// Write an algorithm to remove all numbers less than 5 from the array. 
+// DO NOT use Array's built-in .filter() method here; write the algorithm from scratch.
+
+let numArray = [1, 4, 5, 7, 9]
+
+function moreOrFive(array) {
+  let filteredArray = []
+  for(let i = 0; i < array.length; i++) {
+    if(array[i] > 5) {
+      filteredArray.push(array[i])
+    }
+  }
+  return filteredArray
+}
+
+// console.log(moreOrFive(numArray))
