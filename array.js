@@ -224,20 +224,23 @@ function mergeArr(arr1, arr2) {
   let mergedArr = []
 
   while((arr1.length + arr2.length) > mergedArr.length) {
-    if(idx1 < 0 && idx2 >= 0) {
+    if(idx1 < 0) {
       mergedArr.unshift(arr2[idx2])
       idx2--
-    } else if(idx2 < 0) {
+    }
+    if(idx2 < 0) {
       mergedArr.unshift(arr1[idx1])
       idx1--
     }
-    if(arr1[idx1] > arr2[idx2]) {
-      mergedArr.unshift(arr1[idx1])
-      idx1--
-
-    } else {
-      mergedArr.unshift(arr2[idx2])
-      idx2--
+    if(idx1 >=0 && idx2>=0) {
+      if(arr1[idx1] > arr2[idx2]) {
+        mergedArr.unshift(arr1[idx1])
+        idx1--
+  
+      } else {
+        mergedArr.unshift(arr2[idx2])
+        idx2--
+      }
     }
   }
   return mergedArr
