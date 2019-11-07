@@ -215,7 +215,7 @@ function simpleGetMax(array) {
 
 // console.log(simpleGetMax([4, 6, -3, 5, -2, 1]));
 
-let array1 = [1, 3, 4, 5]
+let array1 = [6, 8, 8, 9, 9, 9]
 let array2 = [2, 2, 5, 9, 11]
 
 function mergeArr(arr1, arr2) {
@@ -224,9 +224,17 @@ function mergeArr(arr1, arr2) {
   let mergedArr = []
 
   while((arr1.length + arr2.length) > mergedArr.length) {
+    if(idx1 < 0 && idx2 >= 0) {
+      mergedArr.unshift(arr2[idx2])
+      idx2--
+    } else if(idx2 < 0) {
+      mergedArr.unshift(arr1[idx1])
+      idx1--
+    }
     if(arr1[idx1] > arr2[idx2]) {
       mergedArr.unshift(arr1[idx1])
       idx1--
+
     } else {
       mergedArr.unshift(arr2[idx2])
       idx2--
