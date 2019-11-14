@@ -223,20 +223,19 @@ function mergeArr(arr1, arr2) {
   let idx2 = arr2.length - 1
   let mergedArr = []
 
-  while((arr1.length + arr2.length) > mergedArr.length) {
-    if(idx1 < 0) {
+  while (arr1.length + arr2.length > mergedArr.length) {
+    if (idx1 < 0) {
       mergedArr.unshift(arr2[idx2])
       idx2--
     }
-    if(idx2 < 0) {
+    if (idx2 < 0) {
       mergedArr.unshift(arr1[idx1])
       idx1--
     }
-    if(idx1 >=0 && idx2>=0) {
-      if(arr1[idx1] > arr2[idx2]) {
+    if (idx1 >= 0 && idx2 >= 0) {
+      if (arr1[idx1] > arr2[idx2]) {
         mergedArr.unshift(arr1[idx1])
         idx1--
-  
       } else {
         mergedArr.unshift(arr2[idx2])
         idx2--
@@ -246,4 +245,55 @@ function mergeArr(arr1, arr2) {
   return mergedArr
 }
 
-console.log(mergeArr(array2,array1))
+console.log(mergeArr(array2, array1))
+
+// 9. Remove characters
+
+// Input:'Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'
+// Output: 'Bttl f th Vwls: Hw vs. Grzny'
+
+function removeChars(string, filtered) {
+  let cleanString = ''
+  let filteredArr = []
+  for (let j = 0; j < filtered.length; j++) {
+    filteredArr.push(filtered[j])
+  }
+  for (let i = 0; i < string.length; i++) {
+    let counter = filteredArr.length - 1
+    while (counter >= 0) {
+      if (string[i] !== filteredArr[counter]) {
+        counter--
+      } else {
+        break
+      }
+    }
+    if (counter === -1) cleanString += string[i]
+  }
+  return cleanString
+}
+
+console.log(removeChars('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'))
+
+// 10. Products
+// Input:[1, 3, 9, 4]
+// Output:[108, 36, 12, 27]
+
+function prodOfRest(arr) {
+  let multiArr = []
+  let index = 0
+  while (index < arr.length) {
+    let multi = 1
+    let j = 0
+    while (j < arr.length) {
+      if (arr[j] !== arr[index]) {
+        multi = multi * arr[j]
+      }
+      j++
+    }
+    multiArr[index] = multi
+    index++
+  }
+  return multiArr
+}
+
+console.log(prodOfRest([1, 3, 9, 4]))
