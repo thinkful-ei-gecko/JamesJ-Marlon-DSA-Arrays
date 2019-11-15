@@ -272,7 +272,7 @@ function removeChars(string, filtered) {
   return cleanString
 }
 
-console.log(removeChars('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'))
+// console.log(removeChars('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'))
 
 // 10. Products
 // Input:[1, 3, 9, 4]
@@ -296,4 +296,58 @@ function prodOfRest(arr) {
   return multiArr
 }
 
-console.log(prodOfRest([1, 3, 9, 4]))
+// console.log(prodOfRest([1, 3, 9, 4]))
+
+// 11. 2D Array
+let matrixArray = [
+  [1,0,1,1,0],
+  [0,1,1,1,0],
+  [1,1,1,1,1],
+  [1,0,1,1,1],
+  [1,1,1,1,1]
+];
+// Output
+// [
+//  [0,0,0,0,0],
+//  [0,0,0,0,0],
+//  [0,0,1,1,0],
+//  [0,0,0,0,0],
+//  [0,0,1,1,0]
+// ];
+function zeroArr(arr) {
+  // while matrix length not reached
+  // check for 0 in each row of matrix
+  // if present, denote location of 0s
+  // change row to 0 and process next row
+  // change position of column in subsequent 
+  // rows to 0
+
+  let columnArr = [1, 1, 1, 1, 1]
+  for (let i = 0; i < arr.length; i++) {
+    let hasZero = false
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === 0) {
+        columnArr[j] = 0
+        hasZero = true
+      }
+    }
+    if (hasZero) {
+      let k = 0
+      while (k < arr[i].length) {
+        arr[i][k] = 0
+        k++
+      }
+    }
+  }
+  
+  for (let i=0; i < arr.length; i++) {
+    for (let j=0; j < columnArr.length; j++) {
+      if (columnArr[j] === 0) {
+        arr[i][j] = columnArr[j]
+      } 
+    }
+  }
+  return arr
+}
+
+console.log(zeroArr(matrixArray))
