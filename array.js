@@ -350,4 +350,41 @@ function zeroArr(arr) {
   return arr
 }
 
-console.log(zeroArr(matrixArray))
+// console.log(zeroArr(matrixArray))
+
+function areSameLetters(str1, str2) {
+  let tempArr = []
+  let tempArr2 = []
+
+  if (str1.length !== str2.length) {
+    return false
+  }
+
+  for (let i = 0; i < str1.length; i++) {
+    tempArr.push(str1[i])
+    tempArr2.push(str2[i])
+  }
+
+  tempArr.sort()
+  tempArr2.sort()
+
+  let isSame = false
+  for (let j = 0; j < tempArr.length; j++) {
+    if (tempArr[j] !== tempArr2[j]) {
+      isSame = false
+      return isSame
+    } else {
+      isSame = true
+    }
+  }
+
+  return isSame
+  
+}
+
+// function strRotation(string1, string2){
+//   console.log((string2).indexOf(string1))
+//   return (string2 + string2).indexOf(string1) != -1;
+
+// }
+console.log(areSameLetters('mazona', 'amazon'))
